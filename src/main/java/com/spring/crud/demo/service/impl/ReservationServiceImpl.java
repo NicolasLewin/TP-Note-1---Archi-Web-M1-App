@@ -51,40 +51,4 @@ public class ReservationServiceImpl implements ReservationService {
 		return reservations.isEmpty();
     }
 
-
-
-
-    /*
-    @Override
-    public TrainStation getTrainStationById(int trainStationId) {
-        List<TrainStation> trainStations = repository.findAll();
-        for (TrainStation trainStation : trainStations) {
-            if (trainStationId == trainStation.getTrainStationId())
-                return trainStation;
-        }
-        return null;
-    }
-
-    @Override
-    public TrainStation save(TrainStation trainStation) {
-        return repository.save(trainStation);
-    }
-
-    @Override
-    public TrainStation update(int id, TrainStation trainStation) {
-        if(!repository.existsById(id) ) return null;
-
-        trainStation.setTrainStationId(id);
-        return repository.save(trainStation);
-    }
-
-    @Override
-    public void delete(int id) {
-        if(repository.existsById(id) ) {
-            repository.deleteById(id);
-        }
-    }
-
-     */
-
 }
