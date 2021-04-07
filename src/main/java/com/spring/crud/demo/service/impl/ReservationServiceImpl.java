@@ -46,8 +46,9 @@ public class ReservationServiceImpl implements ReservationService {
 
 
     @Override
-    public boolean checkIfAvailable(LocalDateTime startDate, LocalDateTime endDate) {
-
+    public boolean checkIfAvailable(int idChambre, LocalDateTime startDate, LocalDateTime endDate) {
+    	List<Reservation> reservations =  repository.getReservationBetweenDateForChambre(startDate.toLocalDate(), endDate.toLocalDate(), idChambre);
+		return reservations.isEmpty();
     }
 
 

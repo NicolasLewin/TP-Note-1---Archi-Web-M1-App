@@ -27,7 +27,7 @@ public class ReservationController {
         return reservationService.getAll();
     }
 
-    @GetMapping
+    @GetMapping("/incoming")
     public List<Reservation> getAllIncomingReservations() {
         return reservationService.getAllIncomingReservations();
     }
@@ -50,8 +50,10 @@ public class ReservationController {
             if(!repository.findById(idChambre).isPresent()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'id de la chambre n'existe pas");
             }
-            reservationService.checkIfAvailable(idChambre, startDate, endDate);
-            savedReservation = reservationService.saveReservation(reservation);
+            
+            if(reservationService.checkIfAvailable(idChambre, startDate, endDate) ) {
+            	savedReservation = reservationService.saveReservation(reservation);
+            }
 
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erreur d'insertion");

@@ -2,6 +2,7 @@ package com.spring.crud.demo.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Personne implements Serializable {
 	private int age;
 
 	@ManyToMany
-	private List<Chambre> reservations;
+	private List<Chambre> reservations = new ArrayList<Chambre>();
 
 	public Personne(String firstName, String lastName, char sex, int age, List<Chambre> reservations) {
 		super();

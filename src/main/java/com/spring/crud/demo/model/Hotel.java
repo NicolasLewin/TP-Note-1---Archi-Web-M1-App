@@ -3,6 +3,7 @@ package com.spring.crud.demo.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,7 +17,7 @@ public class Hotel implements Serializable {
     private String adresse;
 
     @OneToMany(mappedBy = "idChambre", cascade = CascadeType.PERSIST)
-    private List<Chambre> chambres;
+    private List<Chambre> chambres = new ArrayList<Chambre>();
 
     public Hotel() {
         super();

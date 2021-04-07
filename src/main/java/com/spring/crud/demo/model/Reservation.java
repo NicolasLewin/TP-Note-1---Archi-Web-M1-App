@@ -3,6 +3,7 @@ package com.spring.crud.demo.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Reservation implements Serializable {
 
 	@ManyToMany
 	@JoinTable(name = "reservation_personnes", joinColumns = @JoinColumn(name = "idReservation"), inverseJoinColumns = @JoinColumn(name = "idPersonne"))
-	private List<Personne> personne;
+	private List<Personne> personne = new ArrayList<Personne>();
 
 	@ManyToOne
 	private Chambre chambre;

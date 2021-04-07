@@ -2,6 +2,8 @@ package com.spring.crud.demo.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -16,8 +18,8 @@ public class Chambre implements Serializable {
 	@ManyToOne
 	private Hotel hotel;
 
-	@ManyToOne
-	private Reservation reservations;
+	@OneToMany
+	private List<Reservation> reservations = new ArrayList<Reservation>();
 
 	public Chambre() {
 		super();
@@ -61,11 +63,11 @@ public class Chambre implements Serializable {
 		this.hotel = hotel;
 	}
 
-	public Reservation getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
-	public void setReservations(Reservation reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 

@@ -20,20 +20,18 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     @Query("SELECT r FROM Reservation r WHERE DATE(r.startDate) >= :today")
     List<Reservation> getIncomingReservations(@Param("today") LocalDate today);
 
+    @Query("SELECT r FROM Reservation r WHERE DATE(r.startDate) >= :start and DATE(r.endDate) >= :end AND r.chambre.idChambre =:idChambre ")
+    List<Reservation> getReservationBetweenDateForChambre(@Param("start") LocalDate start, @Param("end") LocalDate end, @Param("idChambre") int idChambre );
+    
     @Query("UPDATE Reservation r SET r.status = false WHERE r.idReservation = :idReservation")
     void cancelReservation(@Param("idReservation") int idReservation);
-
-    /*
-    @Query("SELECT j FROM Journey j WHERE j.departureStation.trainStationId= :stationDepart AND j.arrivalStation.trainStationId= :stationArrival ORDER BY j.departureDate")
-    List<Reservation> getJourneysOfDestinations(@Param("stationDepart") int stationDepart, @Param("stationArrival") int stationArrival);
-
-
-    @Query("SELECT j FROM Journey j WHERE j.departureStation.trainStationId= :stationDepart")
-    List<Reservation> getJourneysAverageByStation(@Param("stationDepart") int stationDepart);
-
-    @Modifying
-    @Query("DELETE FROM Journey j WHERE j.departureStation.trainStationId= :station OR j.arrivalStation.trainStationId= :station")
-    void deleteJourneysOfStation(@Param("station") int station);
-
-     */
+    
+    @Query("SELECT SUM(r.priceReservation) FROM Reservation r")
+	public double getTotalCA();
+	
+	@Query("SELECT SUM(r.priceReservation) FROM Reservation r WHERE MONTH(r.endDate) =: indexMonth")
+	public double getTotalCAForMonth(@Param("indexMonth") int indexMonth);
+	
+	@Query("SELECT r FROM Reservation r WHERE DATE(r.startDate) =: date")
+	public List<Reservation> getReservationsFromDate( @Param("date") LocalDate date);
 }

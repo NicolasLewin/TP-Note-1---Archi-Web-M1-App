@@ -18,6 +18,6 @@ public interface ReservationService {
     Reservation saveReservation(Reservation reservation);
 
 
-    boolean checkIfAvailable(LocalDateTime startDate, LocalDateTime endDate);
+    boolean checkIfAvailable(int idChambre, LocalDateTime startDate, LocalDateTime endDate);
 
 }

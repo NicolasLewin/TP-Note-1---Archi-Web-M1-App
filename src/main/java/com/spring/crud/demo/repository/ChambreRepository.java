@@ -13,10 +13,13 @@ import com.spring.crud.demo.model.Hotel;
 import com.spring.crud.demo.model.Reservation;
 
 /**
- * repository for hotel
- * 
+ * repository for chambre
  * @author mickaelgudin
  */
-public interface HotelRepository extends JpaRepository<Hotel, Integer> {
+public interface ChambreRepository extends JpaRepository<Hotel, Integer> {
+	
+	
+	@Query("SELECT c FROM Chambre c WHERE c.idChambre NOT IN(SELECT r.chambre.idChambre FROM Reservation r WHERE r.startDate <> :date) ")
+	public List<Chambre> getChambresWithoutReservationInDate(@Param("date") LocalDate date);
 
 }
