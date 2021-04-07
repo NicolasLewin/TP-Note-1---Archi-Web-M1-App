@@ -1,7 +1,5 @@
 package com.spring.crud.demo;
 
-import com.spring.crud.demo.model.TrainStation;
-import com.spring.crud.demo.repository.LineTrainStationRepository;
 import com.spring.crud.demo.repository.TrainStationRepository;
 import com.spring.crud.demo.utils.HelperUtil;
 import lombok.extern.slf4j.Slf4j;

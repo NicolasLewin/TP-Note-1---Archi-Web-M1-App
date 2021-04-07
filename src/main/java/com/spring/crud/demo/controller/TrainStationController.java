@@ -2,7 +2,6 @@ package com.spring.crud.demo.controller;
 
 import java.util.List;
 
-import com.spring.crud.demo.model.TrainStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

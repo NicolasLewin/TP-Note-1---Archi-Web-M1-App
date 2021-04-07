@@ -5,29 +5,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.spring.crud.demo.SpringBootH2CRUDApplication;
-import com.spring.crud.demo.model.TrainStation;
-import com.spring.crud.demo.repository.TrainStationRepository;
 import com.spring.crud.demo.service.TrainStationService;
-import com.spring.crud.demo.service.impl.TrainStationServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes=SpringBootH2CRUDApplication.class)

@@ -1,8 +1,5 @@
 package com.spring.crud.demo.utils;
 
-import com.spring.crud.demo.model.LineTrainStation;
-import com.spring.crud.demo.model.TrainStation;
-
 /**
  * Class to init original data 
  * Useful because Heroku free plan delete H2 files(so data are deleted every 24 hours)
