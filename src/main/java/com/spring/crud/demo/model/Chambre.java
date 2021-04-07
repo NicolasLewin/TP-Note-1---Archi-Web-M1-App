@@ -1,6 +1,5 @@
 package com.spring.crud.demo.model;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,70 +7,66 @@ import java.io.Serializable;
 @Table
 public class Chambre implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private int idChambre;
-    private String name;
-    private double price;
-    private String country;
+	@Id
+	@GeneratedValue
+	private int idChambre;
+	private String name;
+	private double price;
 
-    @ManyToOne
-    private Hotel hotel;
+	@ManyToOne
+	private Hotel hotel;
 
-    @ManyToOne
-    private Reservation reservation;
+	@ManyToOne
+	private Reservation reservations;
 
+	public Chambre() {
+		super();
+	}
 
+	public Chambre(String name, double price, Hotel hotel) {
+		this.name = name;
+		this.price = price;
+		this.hotel = hotel;
+	}
 
-    public Chambre() {
-        super();
-    }
+	public int getIdChambre() {
+		return idChambre;
+	}
 
-    public Chambre(int idChambre, String name, double price, String country, Hotel hotel) {
-        this.idChambre = idChambre;
-        this.name = name;
-        this.price = price;
-        this.country = country;
-        this.hotel = hotel;
-    }
+	public void setIdChambre(int idChambre) {
+		this.idChambre = idChambre;
+	}
 
-    public int getIdChambre() {
-        return idChambre;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setIdChambre(int idChambre) {
-        this.idChambre = idChambre;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public double getPrice() {
+		return price;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public Hotel getHotel() {
+		return hotel;
+	}
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
 
-    public String getCountry() {
-        return country;
-    }
+	public Reservation getReservations() {
+		return reservations;
+	}
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+	public void setReservations(Reservation reservations) {
+		this.reservations = reservations;
+	}
 
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
 }
