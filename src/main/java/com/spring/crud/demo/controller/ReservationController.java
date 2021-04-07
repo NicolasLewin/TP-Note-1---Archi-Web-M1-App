@@ -1,13 +1,16 @@
 package com.spring.crud.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.spring.crud.demo.model.Reservation;
 import com.spring.crud.demo.repository.ReservationRepository;
 import com.spring.crud.demo.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/reservations")
@@ -35,41 +38,25 @@ public class ReservationController {
         return ResponseEntity.ok().body(repository.findById(id).get());
     }
 
-    
+    @PostMapping("/book")
+    public ResponseEntity<?> saveReservation(@RequestParam(name = "idChambre") int idChambre,
+                                             @RequestParam(name = "startDate") LocalDateTime startDate,
+                                             @RequestParam(name = "endDate") LocalDateTime endDate,
+                                             @RequestBody Reservation reservation) {
 
+        Reservation savedReservation = null;
+        try {
 
+            if(!repository.findById(idChambre).isPresent()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'id de la chambre n'existe pas");
+            }
+            reservationService.checkIfAvailable(idChambre, startDate, endDate);
+            savedReservation = reservationService.saveReservation(reservation);
 
-
-
-
-
-
-
-    /*
-    @GetMapping("/{id}")
-    public Reservation getStudentById(@PathVariable int id ) {
-        return reservationService.getTrainStationById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erreur d'insertion");
+        }
+        return ResponseEntity.ok().body(savedReservation);
     }
 
-
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody Reservation trainStation) {
-        Reservation savedTrainStation = reservationService.save(trainStation);
-        return ResponseEntity.ok().body(savedTrainStation);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable int id, @RequestBody Reservation trainStation) {
-        Reservation updatedTrainStation = reservationService.update(id, trainStation);
-        return ResponseEntity.ok().body(updatedTrainStation);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable int id) {
-        reservationService.delete(id);
-        return ResponseEntity.ok().body("Deleted successfully");
-    }
-
-
-     */
 }

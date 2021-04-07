@@ -39,6 +39,16 @@ public class ReservationServiceImpl implements ReservationService {
         repository.cancelReservation(idReservation);
     }
 
+    @Override
+    public Reservation saveReservation(Reservation reservation) {
+        return repository.save(reservation);
+    }
+
+
+    @Override
+    public boolean checkIfAvailable(LocalDateTime startDate, LocalDateTime endDate) {
+
+    }
 
 
 
